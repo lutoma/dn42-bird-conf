@@ -1,0 +1,5 @@
+router id 172.22.119.1;
+
+define OWNAS = 64719;
+define OWNIP = fd42:a:b::1;
+define OWNEXTIP = 2a00:1828:a009:d::1;

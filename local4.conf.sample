@@ -1,0 +1,20 @@
+define OWNAS = 64719;
+define OWNIP = 172.22.119.1;
+define OWNEXITIP = 217.11.63.42;
+
+protocol ospf {
+		import all;
+		export all;
+
+		area 0 {
+			interface "tun.vie" {
+			hello 5; retransmit 2; wait 10; dead 20;
+			type nonbroadcast;
+		};
+
+		interface "tun.lax" {
+			hello 5; retransmit 2; wait 10; dead 20;
+			type nonbroadcast;
+		};
+	};
+}
