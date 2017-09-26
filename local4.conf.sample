@@ -1,10 +1,17 @@
+include "/etc/bird/defs4.conf";
+
 define OWNAS = 64719;
 define OWNIP = 172.22.119.1;
 define OWNEXITIP = 217.11.63.42;
 
 protocol ospf {
 		import all;
-		export all;
+		export filter {
+			if is_valid_network() && is_self_net() then {
+					accept;
+			}
+			reject;
+		};
 
 		area 0 {
 			interface "tun.vie" {
