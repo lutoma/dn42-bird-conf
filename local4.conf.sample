@@ -4,6 +4,11 @@ define OWNAS = 64719;
 define OWNIP = 172.22.119.1;
 define OWNEXITIP = 217.11.63.42;
 
+# VPN, vod only
+#protocol static {
+#	route 172.22.119.64/26 via 172.22.119.2;
+#}
+
 protocol ospf {
 		import all;
 		export filter {
@@ -23,5 +28,16 @@ protocol ospf {
 			hello 5; retransmit 2; wait 10; dead 20;
 			type nonbroadcast;
 		};
+
+		interface "tun.*" {
+			cost 1000;
+			stub;
+		};
+
+		interface "tap.*" {
+			cost 1000;
+			stub;
+		};
+
 	};
 }
