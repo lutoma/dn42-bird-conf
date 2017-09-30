@@ -12,7 +12,7 @@ define OWNEXITIP = 217.11.63.42;
 protocol ospf {
 		import all;
 		export filter {
-			if is_valid_network() && is_self_net() then {
+			if is_self_net() then {
 					accept;
 			}
 			reject;
