@@ -1,5 +1,6 @@
 include "/etc/bird/defs4.conf";
 
+router id 172.22.119.1;
 define OWNAS = 64719;
 define OWNIP = fd42:a:b::1;
 define OWNEXITIP = 217.11.63.42;
