@@ -1,5 +1,44 @@
-router id 172.22.119.1;
+include "/etc/bird/defs4.conf";
 
 define OWNAS = 64719;
 define OWNIP = fd42:a:b::1;
-define OWNEXTIP = 2a00:1828:a009:d::1;
+define OWNEXITIP = 217.11.63.42;
+define DN42_REGION = 41;
+
+# VPN, vod only
+#protocol static vpn {
+#	route 172.22.119.64/26 via 172.22.119.2;
+#}
+
+protocol ospf {
+		import all;
+		export filter {
+			if is_self_net() then {
+					accept;
+			}
+			reject;
+		};
+
+		area 0 {
+			interface "tun.vie" {
+			hello 5; retransmit 2; wait 10; dead 20;
+			type nonbroadcast;
+		};
+
+		interface "tun.lax" {
+			hello 5; retransmit 2; wait 10; dead 20;
+			type nonbroadcast;
+		};
+
+		interface "tun.*" {
+			cost 1000;
+			stub;
+		};
+
+		interface "tap.*" {
+			cost 1000;
+			stub;
+		};
+
+	};
+}
