@@ -2,7 +2,6 @@ include "/etc/bird/defs4.conf";
 
 define OWNAS = 64719;
 define OWNIP = 172.22.119.1;
-define OWNEXITIP = 217.11.63.42;
 define DN42_REGION = 41;
 
 # VPN, vod only
